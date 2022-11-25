@@ -1,0 +1,31 @@
+{% extends 'page.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        <h4 class="text-center alert alert alert-info">Add a new Student</h4>
+             <form action="" method = "POST">
+                 {%csrf_token%}
+                 {{form.as_p}}
+                 <input type ="submit" class="btn btn-success" value ="Add">
+             </form>
+    </div>
+    <div class="col-sm-4">
+        <h4 class="text-center alert alert alert-info">Add a new Teacher</h4>
+             <form action="" method = "POST">
+                 {%csrf_token%}
+                 {{form2.as_p}}
+                 <input type ="submit" class="btn btn-success" value ="Add">
+             </form>
+    </div>
+    <div class="col-sm-4">
+        <h4 class="text-center alert alert alert-info">Create a new class</h4>
+             <form action="" method = "POST">
+                 {%csrf_token%}
+                 {{form3.as_p}}
+                 <input type ="submit" class="btn btn-success" value ="Add">
+                 <a href =" {% url 'search' %}" class = "btn btn-primary">Next</a>
+             </form>
+    </div>
+</div>
+
+{% endblock content %}

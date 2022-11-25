@@ -1,0 +1,54 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Matricule</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Email</th>
+        <th scope="col">place of birth</th>
+        <th scope="col">date of birth</th>
+        <th scope="col">class</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for st in stud%}
+      <tr>
+        <th scope="row">1</th>
+        <td>{{st.Matricule}} </td>
+        <td>{{st.Name}}</td>
+        <td>{{st.Surname}}</td>
+        <td>{{st.Email}}</td>
+        <td>{{st.place_birth}}</td>
+        <td>{{st.date_birth}}</td>
+        <td>{{st.classe}}</td>
+        <td>
+            <a href=" {% url 'updatedata' st.Matricule%} " class="btn btn-warning btn-sm">modify</a>
+            <form action=" {% url 'deletedata' st.Matricule%} " method ="POST" class = "d-inline">
+                <input type ="submit" class = "btn btn-danger" value = "delete">
+            </form>
+            <a href="#" class="btn btn-danger btn-sm">delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+{% extends 'page.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-8" offset-2>
+        <h4 class="alert alert-info"> Modify informations </h4>
+        <form action ="" method="POST">
+            {% csrf_token%}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-success" value="Modify">
+            <a href=" {% url 'addandshow%} " class = 'bnt bnt-info'>Retour</a>
+
+        </form>
+    </div>
+</div>
+{%endblock content%}

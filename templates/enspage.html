@@ -1,0 +1,14 @@
+{% extends 'page.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-8">
+        <h4 style="margin: auto;margin-left : 25vw" class="text-center alert alert alert-info">Add a new Teacher</h4>
+             <form style="margin: auto;margin-left : 25vw" action="" method = "POST">
+                 {%csrf_token%}
+                 {{form2.as_p}}
+                 <input type ="submit" class="btn btn-success" value ="Add">
+                 <a href =" {%url 'etupage'%} " class = "btn btn-primary">Next</a>
+             </form>
+    </div>
+</div>
+{%endblock content%}
