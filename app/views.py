@@ -6,6 +6,20 @@ from .forms import StudentRegistration,teacherRegistration , classRegistration
 from .models import  Enseignant, CLASS, Etudiant
 from django.db.models import Q
 
+
+def first(request):
+    return render(request,'base1.html')
+
+def log0(request):
+    return render(request,'login0.html')
+
+def log1(request):
+    return render(request,'login1.html')
+
+def log2(request):
+    return render(request,'login2.html')
+
+
 # Create your views here.
 #this function helps us to add data in our tables 
 def ens(request):
@@ -94,3 +108,13 @@ def delete_data(request,Matricule):
         pi.delete()
         return redirect('search')
 
+def search1(request):
+    if 'p' in request.GET:
+        p = request.GET['p']
+        #data = Etudiant.objects.filter(classe__nom_classe__icontains=q).classe
+        data = Etudiant.objects.filter(Matricule__icontains=p)
+        if data is not None:
+            return redirect('enspage')
+        else:
+            messages.error(request, "Please provide a valid Matricul.")
+    return render(request,'login1.html')
