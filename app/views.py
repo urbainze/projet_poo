@@ -15,9 +15,9 @@ def log0(request):
 
 def log1(request):
     return render(request,'login1.html')
-
 def log2(request):
     return render(request,'login2.html')
+
 
 
 # Create your views here.
@@ -82,11 +82,11 @@ def search(request):
         #data = Etudiant.objects.filter(classe__nom_classe__icontains=q).classe
         data = Etudiant.objects.filter(Q(classe__nom_classe__icontains = Etudiant.objects.filter(Matricule__icontains=q).values('classe'))|Q(classe__nom_classe__icontains=q))
     else:
-        data = Etudiant.objects.all()
+        data = None
     context = {
         'data':data
     }
-    return render(request,'search.html',context)
+    return render(request,'search1.html',context)
 
 #fonction pour mettre à jour les données
 def update_data(request,Matricule):
@@ -106,15 +106,7 @@ def delete_data(request,Matricule):
     if request.method=='POST':
         pi = Etudiant.objects.get(pk = Matricule)
         pi.delete()
-        return redirect('search')
+        return redirect('search1')
 
-def search1(request):
-    if 'p' in request.GET:
-        p = request.GET['p']
-        #data = Etudiant.objects.filter(classe__nom_classe__icontains=q).classe
-        data = Etudiant.objects.filter(Matricule__icontains=p)
-        if data is not None:
-            return redirect('enspage')
-        else:
-            messages.error(request, "Please provide a valid Matricul.")
-    return render(request,'login1.html')
+
+    

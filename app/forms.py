@@ -57,8 +57,4 @@ class classRegistration(forms.ModelForm):
 
 
 #class classeChangeListForm(forms.ModelForm):
-    #classe = forms.ModelMultipleChoiceField(queryset=CLASS.objects.all(), required=False)
-
-
-class utiform(forms.Form):
-    matricule = forms.TextInput(attrs={'class':'form-control'})
+#classe = forms.ModelMultipleChoiceField(queryset=CLASS.objects.all(), required=False)

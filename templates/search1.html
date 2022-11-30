@@ -1,0 +1,61 @@
+{% extends 'page.html' %}
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{%url 'search1'%}">IA School</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{%url 'enspage'%}">add teacher</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{%url 'etupage'%}">add student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{%url 'classpage'%}">add class</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+         <input class="form-control me-2" name = "q" type="search" placeholder="Search" aria-label="Search">
+         <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Matricule</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Place Birth</th>
+        <th scope="col">Place Birth</th>
+        <th scope="col">Classe</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for st in data %}
+      <tr>
+        <td>{{st.Matricule}}</td>
+        <td> {{st.Name}} </td>
+        <td>{{st.Surname}}</td>
+        <td> {{st.Email}} </td>
+        <td> {{st.date_birth}} </td>
+        <td> {{st.place_birth}} </td>
+        <td> {{st.classe}} </td>
+        <td>
+          <a href="{% url 'updatedata' st.Matricule %}" class="btn btn-outline-info">Mdify</a>
+          <form action=" {% url 'deletedata' st.Matricule%} " method ="POST" class = "d-inline">
+            {%csrf_token%}
+            <input type ="submit" class = "btn btn-outline-danger" value = "Delete">
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock%}
